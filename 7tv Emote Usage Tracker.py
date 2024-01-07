@@ -1,33 +1,35 @@
 # Counting 7tv emote usage bot.
 
 # Imports
-import socket
-import logging
-import requests
+#import socket
+#import logging
+#import requests
 from multiprocessing import Process
-import time
+#import time
+'''
 from datetime import date
 from datetime import datetime
 import json
 import re
-import csv
 import gzip
 import os
+'''
 import threading
 
 # Declarations
 server = 'irc.chat.twitch.tv'
 port = 6667
 nickname = 'ShiroTheShiro'
-token = 'oauth:fon7jkxgsat1ylcdl3py2a21ks8ilg'
+token = 'oauth:lktxd96xj4qu2g6fl2zi5pavq5m3l7'
 channel = '#avast'
 channelName = 'avast'
 avastTwitchID = 32905366
-avastEmoteSetID = "63897e65bf900727661286f2"
+#avastEmoteSetID = "63897e65bf900727661286f2"
 liveFlag = False
 liveFlagLock = threading.Lock()
-livestreamID = 1
+#livestreamID = 1
 
+"""
 # Socket Set-up
 sock = socket.socket()
 sock.connect((server, port))
@@ -40,14 +42,15 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s — %(message)s',
                     datefmt='%Y-%m-%d_%H:%M:%S',
                     handlers=[logging.FileHandler('chat.log', encoding='utf-8')])
-
-
+"""
+"""
 def checkIfUserIsStreaming(username):
     url = "https://gql.twitch.tv/gql"
     query = "query {\n  user(login: \""+username+"\") {\n    stream {\n      id\n    }\n  }\n}"
     return True if requests.request("POST", url, json={"query": query, "variables": {}}, headers={"client-id": "kimne78kx3ncx6brgo4mv6wki5h1ko"}).json()["data"]["user"]["stream"] else False
+"""
 
-
+'''
 def betterCount(string, sub):
     count = start = 0
     while True:
@@ -89,8 +92,10 @@ def get_chat_dataframe(file):
                 pass
 
     return data
+*/
+'''
 
-
+"""
 def UpdateLiveFlag():
     global liveFlag
     counter = 0
@@ -110,10 +115,10 @@ def UpdateLiveFlag():
                 liveFlag = False
                 EmoteStatsHandler()
             time.sleep(1)
+"""
 
 
-
-
+"""
 # Logger Loop Wrapper Function.
 def LoggerFunction():
     global liveFlag
@@ -135,8 +140,9 @@ def LoggerFunction():
 
         elif len(resp) > 0 and liveFlag:
             logging.info(resp)
+"""
 
-
+'''
 # Emote Statistical Analysis
 def EmoteStatsHandler():
     # Decelerations And Set-Up
@@ -201,7 +207,7 @@ def EmoteStatsHandler():
         json.dump(emoteStats, f)
 
     livestreamID += 1
-
+'''
 
 # Concurrenting Parts
 if __name__ == '__main__':
