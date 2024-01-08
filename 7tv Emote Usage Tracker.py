@@ -218,10 +218,10 @@ if __name__ == '__main__':
         ChatListener.loggerSetup()
         ChatListener.socketSetup()
 
-        streaming_thread = threading.Thread(target=updateLiveFlag)
+        streaming_thread = threading.Thread(target=ChatListener.updateLiveFlag)
         streaming_thread.start()
 
-        LoggerFunction()
+        ChatListener.chatListenerHandler()
     except Exception:
         print("Exception Raised")
         try:
