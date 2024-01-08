@@ -4,7 +4,7 @@
 #import socket
 #import logging
 #import requests
-from multiprocessing import Process
+#from multiprocessing import Process
 #import time
 '''
 from datetime import date
@@ -15,25 +15,21 @@ import gzip
 import os
 '''
 import threading
+from Chat_Listener import ChatListener
+from Data_Processor import DataProcessor
+
 
 # Declarations
-server = 'irc.chat.twitch.tv'
-port = 6667
-nickname = 'ShiroTheShiro'
-<<<<<<< HEAD
-token = 'oauth:lktxd96xj4qu2g6fl2zi5pavq5m3l7'
-=======
-token = ''
->
-
-qa
->>>>>> 6a3aa6041138c59f70178adb124e5c892d11b479
-channel = '#avast'
-channelName = 'avast'
-avastTwitchID = 32905366
+#server = 'irc.chat.twitch.tv'
+#port = 6667
+#nickname = 'ShiroTheShiro'
+#token = 'oauth:lktxd96xj4qu2g6fl2zi5pavq5m3l7'
+#channel = '#avast'
+#channelName = 'avast'
+#avastTwitchID = 32905366
 #avastEmoteSetID = "63897e65bf900727661286f2"
-liveFlag = False
-liveFlagLock = threading.Lock()
+#liveFlag = False
+#liveFlagLock = threading.Lock()
 #livestreamID = 1
 
 """
@@ -219,7 +215,10 @@ def EmoteStatsHandler():
 # Concurrenting Parts
 if __name__ == '__main__':
     try:
-        streaming_thread = threading.Thread(target=UpdateLiveFlag)
+        ChatListener.loggerSetup()
+        ChatListener.socketSetup()
+
+        streaming_thread = threading.Thread(target=updateLiveFlag)
         streaming_thread.start()
 
         LoggerFunction()

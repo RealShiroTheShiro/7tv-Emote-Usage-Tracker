@@ -11,9 +11,16 @@ import time
 
 
 # Decelerations
+server = 'irc.chat.twitch.tv'
+port = 6667
 nickname = 'ShiroTheShiro'
 token = ''
 channel = '#avast'
+channelName = 'avast'
+sock = null
+liveFlag = False
+liveFlagLock = threading.Lock()
+
 
 # Sets up the logger.
 def loggerSetup():
@@ -25,7 +32,7 @@ def loggerSetup():
 
 # Starts and sets up a socket.
 def socketSetup():
-    global socket
+    global sock
     sock = socket.socket()
     sock.connect((server, port))
     sock.send(f"PASS {token}\n".encode('utf-8'))
@@ -41,7 +48,7 @@ def checkIfUserIsStreaming(username):
 
 
 # Updates live flag.
-def UpdateLiveFlag():
+def updateLiveFlag():
     global liveFlag
     counter = 0
 
@@ -60,7 +67,7 @@ def UpdateLiveFlag():
             if counter == 6:
                 counter = 0
                 liveFlag = False
-                EmoteStatsHandler()
+                emoteUsageHandler()
             time.sleep(1)
 
 
