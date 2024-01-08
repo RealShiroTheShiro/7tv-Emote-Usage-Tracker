@@ -20,7 +20,14 @@ import threading
 server = 'irc.chat.twitch.tv'
 port = 6667
 nickname = 'ShiroTheShiro'
+<<<<<<< HEAD
 token = 'oauth:lktxd96xj4qu2g6fl2zi5pavq5m3l7'
+=======
+token = ''
+>
+
+qa
+>>>>>> 6a3aa6041138c59f70178adb124e5c892d11b479
 channel = '#avast'
 channelName = 'avast'
 avastTwitchID = 32905366
