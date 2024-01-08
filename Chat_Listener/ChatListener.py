@@ -17,7 +17,7 @@ nickname = 'ShiroTheShiro'
 token = ''
 channel = '#avast'
 channelName = 'avast'
-sock = null
+sock = None
 liveFlag = False
 liveFlagLock = threading.Lock()
 
@@ -84,7 +84,7 @@ def chatListenerHandler():
 
 
         # Message handler.
-        if resp == 0:
+        if resp is None:
             sock = socket.socket()
             sock.connect((server, port))
             sock.send(f"PASS {token}\n".encode('utf-8'))
