@@ -23,6 +23,13 @@ liveFlag = False
 liveFlagLock = threading.Lock()
 
 
+# Reads private OAuth token.
+def getOAuthToken():
+    global token
+    with open("OAuth token", "r") as f:
+        token = f.read()
+
+
 # Sets up the logger.
 def loggerSetup():
     logging.basicConfig(level=logging.INFO,
