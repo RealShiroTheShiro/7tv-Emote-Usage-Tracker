@@ -16,7 +16,6 @@ import os
 '''
 import threading
 from Chat_Listener import ChatListener
-from Data_Processor import DataProcessor
 
 
 # Declarations

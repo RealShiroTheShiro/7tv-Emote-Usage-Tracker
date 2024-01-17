@@ -9,6 +9,7 @@ import socket
 import logging
 import time
 import threading
+from Data_Processor import DataProcessor
 
 
 # Decelerations
@@ -42,6 +43,7 @@ def loggerSetup():
 def socketSetup():
     global sock
     sock = socket.socket()
+    getOAuthToken()
     sock.connect((server, port))
     sock.send(f"PASS {token}\n".encode('utf-8'))
     sock.send(f"NICK {nickname}\n".encode('utf-8'))
@@ -75,7 +77,7 @@ def updateLiveFlag():
             if counter == 6:
                 counter = 0
                 liveFlag = False
-                emoteUsageHandler()
+                DataProcessor.emoteUsageHandler()
             time.sleep(1)
 
 
@@ -92,12 +94,8 @@ def chatListenerHandler():
 
 
         # Message handler.
-        if resp is None:
-            sock = socket.socket()
-            sock.connect((server, port))
-            sock.send(f"PASS {token}\n".encode('utf-8'))
-            sock.send(f"NICK {nickname}\n".encode('utf-8'))
-            sock.send(f"JOIN {channel}\n".encode('utf-8'))
+        if not resp:
+            socketSetup()
 
         elif resp.startswith('PING'):
             sock.send("PONG\n".encode('utf-8'))

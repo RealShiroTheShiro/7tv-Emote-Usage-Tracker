@@ -8,6 +8,7 @@ import json
 import re
 import gzip
 import os
+import requests
 from datetime import datetime
 from datetime import date
 import time
@@ -86,9 +87,12 @@ def emoteUsageHandler():
 
 
     # Loads previous data.
-    with open("Emote Stats.txt", 'r', encoding='utf-8') as f:
-        emoteStats = json.load(f)
-    data = get_chat_dataframe("chat.log")
+    try:
+        with open("Emote Stats.txt", 'r', encoding='utf-8') as f:
+            emoteStats = json.load(f)
+        data = get_chat_dataframe("chat.log")
+    except:
+        data = {}
 
 
     #
